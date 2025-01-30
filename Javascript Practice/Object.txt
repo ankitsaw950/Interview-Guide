@@ -1,0 +1,206 @@
+1. Symbol: Ek unique identifier create karne ke liye use hota hai. Example: `const mySym = Symbol("key1")`
+
+2. Object: JavaScript me ek collection of properties hota hai. Example: 
+   ```
+   const JsUser = {
+       name: "John Doe",
+       age: 30,
+       email: "john@doe",
+       location: "Suriya",
+       loggedInDays: ["Monday", "Saturday", "Sunday"],
+   }
+   ```
+
+3. Object.freeze: Is method se object ko freeze kiya ja sakta hai jisse object me koi nayi property add ya modify nahi ki ja sakti. Example: `Object.freeze(JsUser)`
+
+4. Property Access: Object properties ko dot notation (`JsUser.name`) ya bracket notation (`JsUser["age"]`) se access kiya ja sakta hai.
+
+5. Method: Object ke andar function ko method kehte hain. Example: 
+   ```
+   JsUser.greeting = function() {
+       console.log("Hello ankit");
+   }
+   ```
+
+6. typeof: Yeh operator kisi variable ya expression ka type return karta hai. Example: `console.log(typeof greeting)`
+
+7. Internally, JavaScript keys are stored as strings. Therefore, accessing `JsUser[age]` will result in an error because `age` is not a string. Use `JsUser["age"]` instead.
+
+
+
+
+## Hoisting 
+
+Let's break down your code and analyze it step by step, focusing on **hoisting** and **objects** in JavaScript.
+
+### **Code Analysis**
+```javascript
+console.log(tinderUser); // ?
+const tinderUser = {};
+const tinder = new Object();
+console.log(tinderUser); // ?
+console.log(tinder); // ?
+```
+
+---
+
+
+1. **What is Hoisting?**
+   Hoisting is JavaScript's default behavior of moving declarations to the top of the current scope. However, **how variables are hoisted depends on how they are declared**:
+   - **`var`**: Hoisted and initialized as `undefined`.
+   - **`let` and `const`**: Hoisted, but not initialized (in the **Temporal Dead Zone (TDZ)** until the declaration is executed).
+   - **Functions**: Fully hoisted, meaning you can call them before their declaration.
+
+2. **Objects Are Not Special**
+   - Objects in JavaScript behave like any other variable.
+   - Their hoisting depends on how the variable is declared.
+
+---
+
+### **Code Execution Flow**
+#### Line-by-Line Behavior
+1. **`console.log(tinderUser);`**
+   - **`tinderUser` is declared with `const`.**
+   - `const` variables are hoisted but are in the **TDZ** (Temporal Dead Zone). You cannot access them before their declaration.
+   - Accessing `tinderUser` here throws a **`ReferenceError`**.
+
+2. **`const tinderUser = {};`**
+   - This creates the `tinderUser` object and initializes it with an empty object.
+
+3. **`const tinder = new Object();`**
+   - This creates another object, `tinder`, using the `Object` constructor.
+
+4. **`console.log(tinderUser);`**
+   - By now, `tinderUser` has been initialized, so it logs `{}` (an empty object).
+
+5. **`console.log(tinder);`**
+   - By now, `tinder` has also been initialized, so it logs `{}` (an empty object).
+
+---
+
+### **Corrected Execution with Errors**
+```javascript
+console.log(tinderUser); // ReferenceError: Cannot access 'tinderUser' before initialization
+const tinderUser = {};   // Declares and initializes tinderUser
+const tinder = new Object(); // Declares and initializes tinder
+console.log(tinderUser); // {}
+console.log(tinder);     // {}
+```
+
+---
+
+### **Key Points**
+- Objects themselves are **not hoisted** differently; they are just variables. The hoisting behavior depends on how the variable is declared.
+- **`const` and `let` variables are not accessible before their declaration** due to the Temporal Dead Zone (TDZ).
+- **`var`** variables would behave differently. If you use `var` instead of `const` in your example:
+
+```javascript
+console.log(tinderUser); // undefined (because `var` is hoisted and initialized to `undefined`)
+var tinderUser = {};
+var tinder = new Object();
+console.log(tinderUser); // {}
+console.log(tinder);     // {}
+```
+
+---
+
+### **Takeaways**
+- **Objects don't have special hoisting behavior.** Their behavior depends on whether they are declared with `var`, `let`, or `const`.
+- **Always declare variables before using them** to avoid issues with hoisting or the Temporal Dead Zone.
+
+
+
+Let's analyze this code step by step to understand its behavior:
+
+```javascript
+console.log(a);
+a: {
+    apple: "fruit";
+}
+
+console.log(a);
+```
+
+---
+
+### **1. Key Concepts**
+- **Labels in JavaScript**:  
+  The `a:` syntax in your code creates a **label** rather than an object. Labels are used with loops or `switch` statements to mark blocks of code for reference. This is **not** an object assignment.
+
+- **Hoisting**:  
+  The variable `a` is not declared with `var`, `let`, or `const`. Accessing an undeclared variable directly results in a **`ReferenceError`**.
+
+---
+
+### **Code Execution Flow**
+#### **Line 1: `console.log(a);`**
+- `a` is not declared yet.
+- JavaScript will throw a **`ReferenceError: a is not defined`** because `a` is not a variable or object.
+
+---
+
+#### **Line 2: `a: { apple: "fruit"; }`**
+- The `a:` syntax is treated as a **label**, not a variable or object assignment.
+- The code block `{ apple: "fruit"; }` is valid but does nothing because it is not part of any loop or control flow.
+
+---
+
+#### **Line 4: `console.log(a);`**
+- Again, `a` is still not defined as a variable or object.
+- JavaScript will throw **`ReferenceError: a is not defined`**.
+
+---
+
+### **Correcting the Code**
+If you want to use `a` as an object, you need to define it explicitly with `var`, `let`, or `const`. For example:
+
+```javascript
+const a = {
+    apple: "fruit"
+};
+
+console.log(a); // { apple: "fruit" }
+console.log(a.apple); // "fruit"
+```
+
+---
+
+### **Takeaway**
+- The `a:` syntax is interpreted as a **label** in JavaScript, not as an object declaration.
+- Always declare variables explicitly before using them to avoid errors.
+- If you want `a` to be an object, declare it with `const`, `let`, or `var`.
+
+
+### **Labels in JavaScript** (Short Notes)
+
+1. **Definition**:  
+   Labels are identifiers used to name a block of code or loop for controlling execution with `break` or `continue`.
+
+2. **Syntax**:  
+   ```javascript
+   labelName: statement
+   ```
+
+3. **Use Cases**:  
+   - **Exit a specific loop**:  
+     ```javascript
+     outerLoop: for (let i = 0; i < 3; i++) {
+         for (let j = 0; j < 3; j++) {
+             if (i === 1 && j === 1) break outerLoop; // Exits outer loop
+         }
+     }
+     ```
+   - **Skip iterations in a loop**:  
+     ```javascript
+     outerLoop: for (let i = 0; i < 3; i++) {
+         for (let j = 0; j < 3; j++) {
+             if (i === 1 && j === 1) continue outerLoop; // Skips to outer loop's next iteration
+         }
+     }
+     ```
+
+4. **Key Points**:  
+   - Labels are **not variables**.
+   - Avoid overuse; they can make code harder to read.  
+   - Primarily used with **nested loops**.
+

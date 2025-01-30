@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 1</title>
+  </head>
+  <body>
+    <h1>Hello Ankit</h1>
+    <button id="stop">Stop</button>
+    <button id="start">Start</button>
+  </body>
+  <script>
+
+const randomColor = function(){
+    const hex = '0123456789ABCDEF'
+    let color = '#'
+
+    for(let i=0;i<6;i++){
+        color += hex[Math.floor(Math.random() * 16)];
+    }
+    return color
+}
+let interval
+const startChangingColor = function(){
+    interval = setInterval(function changeBgColor(){
+    document.body.style.backgroundColor =randomColor()
+    },1000)
+    
+}
+const stopChangingColor = function(){
+    clearInterval(interval)
+    interval=null
+}
+
+
+document.querySelector('#start').addEventListener('click',startChangingColor)
+document.querySelector('#stop').addEventListener('click',stopChangingColor)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // let i = 1 
+    // const say = function(str){
+    //     console.log("Say Hello to " + str + " "+i)
+    //     i++
+    //  }
+
+    //  let test
+
+    // document.querySelector('#start').addEventListener('click',function(){
+    //  test = setInterval(say,2000,"Ankit")
+    //  })
+
+    // // const test = setInterval(say,2000,"Ankit")
+
+    // document.querySelector('#stop').addEventListener('click',function(){
+    //     clearInterval(test)
+    //     console.log("Set interval is stopped")
+    // })
+    
+
+
+
+    // const change = function () {
+    //        document.querySelector("h1").innerHTML =
+    //        "You are starting the preparation";
+    // };
+
+    // const fun = function () {
+    //   console.log("Ankit");
+    // };
+
+    // document.querySelector(
+    //     '#stop' 
+    // ).addEventListener('click',function(){
+    //     clearTimeout(test)
+    //     console.log("Settimeout hat gaya ")
+    // })
+
+    // const test = setTimeout(change, 2000);
+
+  
+
+  </script>
+</html>
