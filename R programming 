@@ -1,0 +1,66 @@
+R Programming Practical Questions
+
+
+1. Variables and Data Types
+
+Assign the value 42 to a variable and print it.
+
+Create a character variable and concatenate it with another string.
+
+Define a logical variable and use it in a conditional statement.
+
+
+2. Conditional Statements
+
+Write an R script to check if a number is even or odd.
+
+Implement an if-else statement to categorize a number as positive, negative, or zero.
+
+Use a switch statement to print the name of a day based on its number (1-7).
+
+
+3. Loops
+
+Use a for loop to print numbers from 1 to 10.
+
+Create a while loop that sums numbers from 1 to 50.
+
+Use a repeat loop to find the first number divisible by 7 greater than 50.
+
+
+4. Functions in R
+
+Write a function to calculate the factorial of a number.
+
+Create a function that returns the nth Fibonacci number.
+
+Write a function to check if a string is a palindrome.
+
+
+5. Vectors and Operations
+
+Create a sequence from 10 to 100 with a step size of 5.
+
+Find the sum, mean, and standard deviation of a numeric vector.
+
+Extract elements at even positions from a given vector.
+
+
+6. Lists
+
+Create a list containing a vector, a matrix, and a string.
+
+Access specific elements from a list.
+
+Modify an element inside a list and print the updated list.
+
+
+7. Matrices
+
+Create a matrix of numbers from 1 to 9 with 3 rows and 3 columns.
+
+Access the second row and third column of the matrix created above.
+
+Perform element-wise addition of two matrices.
+
+
